@@ -10,12 +10,12 @@ Ponyfill is the recommended module type, as this allows the use of IndexedDB wit
 
 **Persistent**
 ```javascript
-import { indexedDB } from './indexeddb/ponyfill.ts'
+import { indexedDB } from 'https://deno.land/x/indexeddb@v1.0.0/ponyfill.ts'
 ```
 
 **In-memory**
 ```javascript
-import { indexedDB } from './indexeddb/ponyfill_memory.ts'
+import { indexedDB } from 'https://deno.land/x/indexeddb@v1.0.0/ponyfill_memory.ts'
 ```
 
 ### Polyfill
@@ -24,12 +24,12 @@ Polyfill modules will add `indexedDB` to globalThis, and declare `indexedDB` and
 
 **Persistent**
 ```javascript
-import './indexeddb/polyfill.ts'
+import 'https://deno.land/x/indexeddb@v1.0.0/polyfill.ts'
 ```
 
 **In-memory**
 ```javascript
-import './indexeddb/polyfill_memory.ts'
+import 'https://deno.land/x/indexeddb@v1.0.0/polyfill_memory.ts'
 ```
 
 ## Documentation
