@@ -2,7 +2,7 @@
 import type { IDBFactory } from './indexeddb.ts'
 import 'https://cdn.skypack.dev/regenerator-runtime@0.13.9'
 import indexeddbshim from 'https://cdn.skypack.dev/indexeddbshim@v9.0.0/dist/indexeddbshim-noninvasive.js'
-import { openDatabase, configureSQLiteDB } from '../../websql/mod.ts'
+import { openDatabase, configureSQLiteDB } from 'https://deno.land/x/websql@v1.0.0/mod.ts'
 
 interface IDBShim {
   readonly shimIndexedDB: {
