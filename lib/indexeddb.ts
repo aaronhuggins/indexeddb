@@ -399,7 +399,7 @@ interface IDBOpenDBRequestEventMap extends IDBRequestEventMap {
 }
 
 /** Also inherits methods from its parents IDBRequest and EventTarget. */
-interface IDBOpenDBRequest extends IDBRequest<IDBDatabase> {
+export interface IDBOpenDBRequest extends IDBRequest<IDBDatabase> {
   onblocked: ((this: IDBOpenDBRequest, ev: Event) => any) | null;
   onupgradeneeded: ((this: IDBOpenDBRequest, ev: IDBVersionChangeEvent) => any) | null;
   addEventListener<K extends keyof IDBOpenDBRequestEventMap>(type: K, listener: (this: IDBOpenDBRequest, ev: IDBOpenDBRequestEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -408,7 +408,7 @@ interface IDBOpenDBRequest extends IDBRequest<IDBDatabase> {
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
-interface IDBOpenDBRequest {
+export interface IDBOpenDBRequest {
   prototype: IDBOpenDBRequest;
   new(): IDBOpenDBRequest;
 }
