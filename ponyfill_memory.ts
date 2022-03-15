@@ -1,7 +1,8 @@
 import { configureSQLiteDB, createIndexedDB } from './lib/shim.ts'
 
 configureSQLiteDB({ memory: true })
-const {
+
+export const {
   IDBCursor,
   IDBCursorWithValue,
   IDBDatabase,
@@ -15,18 +16,3 @@ const {
   IDBVersionChangeEvent,
   indexedDB
 } = createIndexedDB()
-
-export {
-  IDBCursor,
-  IDBCursorWithValue,
-  IDBDatabase,
-  IDBFactory,
-  IDBIndex,
-  IDBKeyRange,
-  IDBObjectStore,
-  IDBOpenDBRequest,
-  IDBRequest,
-  IDBTransaction,
-  IDBVersionChangeEvent,
-  indexedDB
-}
