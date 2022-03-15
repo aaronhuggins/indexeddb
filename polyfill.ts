@@ -1,5 +1,5 @@
-import './lib/indexeddb_global.ts'
-import { configureSQLiteDB, createIndexedDB } from './lib/shim.ts'
+import "./lib/indexeddb_global.ts";
+import { configureSQLiteDB, createIndexedDB } from "./lib/shim.ts";
 
-configureSQLiteDB({ memory: false })
-createIndexedDB(true)
+configureSQLiteDB({ memory: false });
+createIndexedDB(true);

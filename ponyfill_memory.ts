@@ -1,7 +1,7 @@
-import { configureSQLiteDB, createIndexedDB } from './lib/shim.ts'
-export * from './lib/indexeddb.ts'
+import { configureSQLiteDB, createIndexedDB } from "./lib/shim.ts";
+export * from "./lib/indexeddb.ts";
 
-configureSQLiteDB({ memory: true })
+configureSQLiteDB({ memory: true });
 
 export const {
   IDBCursor,
@@ -15,5 +15,5 @@ export const {
   IDBRequest,
   IDBTransaction,
   IDBVersionChangeEvent,
-  indexedDB
-} = createIndexedDB()
+  indexedDB,
+} = createIndexedDB();

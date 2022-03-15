@@ -10,8 +10,8 @@ import type {
   IDBOpenDBRequest as IDBOpenDBRequest1,
   IDBRequest as IDBRequest1,
   IDBTransaction as IDBTransaction1,
-  IDBVersionChangeEvent as IDBVersionChangeEvent1
-} from './indexeddb.ts'
+  IDBVersionChangeEvent as IDBVersionChangeEvent1,
+} from "./indexeddb.ts";
 
 declare global {
   interface IDBCursor extends IDBCursor1 {}
@@ -27,19 +27,19 @@ declare global {
   interface IDBVersionChangeEvent extends IDBVersionChangeEvent1 {}
 
   interface WindowOrWorkerGlobalScope {
-    IDBCursor: IDBCursor
-    IDBCursorWithValue: IDBCursorWithValue
-    IDBDatabase: IDBDatabase
-    IDBFactory: IDBFactory
-    IDBIndex: IDBIndex
-    IDBKeyRange: IDBKeyRange
-    IDBObjectStore: IDBObjectStore
-    IDBOpenDBRequest: IDBOpenDBRequest
-    IDBRequest: IDBRequest
-    IDBTransaction: IDBTransaction
-    IDBVersionChangeEvent: IDBVersionChangeEvent
-    indexedDB: IDBFactory
+    IDBCursor: IDBCursor;
+    IDBCursorWithValue: IDBCursorWithValue;
+    IDBDatabase: IDBDatabase;
+    IDBFactory: IDBFactory;
+    IDBIndex: IDBIndex;
+    IDBKeyRange: IDBKeyRange;
+    IDBObjectStore: IDBObjectStore;
+    IDBOpenDBRequest: IDBOpenDBRequest;
+    IDBRequest: IDBRequest;
+    IDBTransaction: IDBTransaction;
+    IDBVersionChangeEvent: IDBVersionChangeEvent;
+    indexedDB: IDBFactory;
   }
 
-  let indexedDB: IDBFactory
+  let indexedDB: IDBFactory;
 }

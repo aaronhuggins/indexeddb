@@ -2,52 +2,55 @@
 import type {
   IDBCursor,
   IDBCursorWithValue,
-  IDBFactory,
   IDBDatabase,
+  IDBFactory,
   IDBIndex,
   IDBKeyRange,
   IDBObjectStore,
   IDBOpenDBRequest,
   IDBRequest,
   IDBTransaction,
-  IDBVersionChangeEvent
-} from './indexeddb.ts'
-import 'https://cdn.skypack.dev/regenerator-runtime@0.13.9'
-import indexeddbshim from 'https://cdn.skypack.dev/indexeddbshim@v9.0.0/dist/indexeddbshim-noninvasive.js'
-import { openDatabase, configureSQLiteDB } from 'https://deno.land/x/websql@v1.1.0/mod.ts'
+  IDBVersionChangeEvent,
+} from "./indexeddb.ts";
+import "https://cdn.skypack.dev/regenerator-runtime@0.13.9";
+import indexeddbshim from "https://cdn.skypack.dev/indexeddbshim@v9.0.0/dist/indexeddbshim-noninvasive.js";
+import {
+  configureSQLiteDB,
+  openDatabase,
+} from "https://deno.land/x/websql@v1.1.0/mod.ts";
 
 export interface IndexedDBApi {
-  IDBCursor: IDBCursor
-  IDBCursorWithValue: IDBCursorWithValue
-  IDBDatabase: IDBDatabase
-  IDBFactory: IDBFactory
-  IDBIndex: IDBIndex
-  IDBKeyRange: IDBKeyRange
-  IDBObjectStore: IDBObjectStore
-  IDBOpenDBRequest: IDBOpenDBRequest
-  IDBRequest: IDBRequest
-  IDBTransaction: IDBTransaction
-  IDBVersionChangeEvent: IDBVersionChangeEvent
-  indexedDB: IDBFactory
+  IDBCursor: IDBCursor;
+  IDBCursorWithValue: IDBCursorWithValue;
+  IDBDatabase: IDBDatabase;
+  IDBFactory: IDBFactory;
+  IDBIndex: IDBIndex;
+  IDBKeyRange: IDBKeyRange;
+  IDBObjectStore: IDBObjectStore;
+  IDBOpenDBRequest: IDBOpenDBRequest;
+  IDBRequest: IDBRequest;
+  IDBTransaction: IDBTransaction;
+  IDBVersionChangeEvent: IDBVersionChangeEvent;
+  indexedDB: IDBFactory;
 }
 
 interface IDBShim extends IndexedDBApi {
   readonly shimIndexedDB: {
-    __useShim: () => void
-  }
+    __useShim: () => void;
+  };
 }
 
-const setGlobalVars = indexeddbshim as (...args: any[]) => IDBShim
+const setGlobalVars = indexeddbshim as (...args: any[]) => IDBShim;
 
-function createIndexedDB (makeGlobal = false): IndexedDBApi {
-  const kludge = makeGlobal ? null : { shimIndexedDB: {} }
+function createIndexedDB(makeGlobal = false): IndexedDBApi {
+  const kludge = makeGlobal ? null : { shimIndexedDB: {} };
   const idb = setGlobalVars(kludge, {
     avoidAutoShim: !makeGlobal,
     checkOrigin: false,
-    win: { openDatabase }
-  })
+    win: { openDatabase },
+  });
 
-  if (!makeGlobal) idb.shimIndexedDB.__useShim()
+  if (!makeGlobal) idb.shimIndexedDB.__useShim();
 
   return {
     IDBCursor: idb.IDBCursor,
@@ -61,11 +64,8 @@ function createIndexedDB (makeGlobal = false): IndexedDBApi {
     IDBRequest: idb.IDBRequest,
     IDBTransaction: idb.IDBTransaction,
     IDBVersionChangeEvent: idb.IDBVersionChangeEvent,
-    indexedDB: idb.indexedDB
-  }
+    indexedDB: idb.indexedDB,
+  };
 }
 
-export {
-  createIndexedDB,
-  configureSQLiteDB
-}
+export { configureSQLiteDB, createIndexedDB };

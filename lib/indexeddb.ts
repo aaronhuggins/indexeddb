@@ -74,7 +74,7 @@ export interface IDBCursor {
 
 export interface IDBCursor {
   prototype: IDBCursor;
-  new(): IDBCursor;
+  new (): IDBCursor;
 }
 
 /** This IndexedDB API interface represents a cursor for traversing or iterating over multiple records in a database. It is the same as the IDBCursor, except that it includes the value property. */
@@ -87,7 +87,7 @@ export interface IDBCursorWithValue extends IDBCursor {
 
 export interface IDBCursorWithValue {
   prototype: IDBCursorWithValue;
-  new(): IDBCursorWithValue;
+  new (): IDBCursorWithValue;
 }
 
 interface IDBDatabaseEventMap {
@@ -110,7 +110,9 @@ export interface IDBDatabase extends EventTarget {
   onabort: ((this: IDBDatabase, ev: Event) => any) | null;
   onclose: ((this: IDBDatabase, ev: Event) => any) | null;
   onerror: ((this: IDBDatabase, ev: Event) => any) | null;
-  onversionchange: ((this: IDBDatabase, ev: IDBVersionChangeEvent) => any) | null;
+  onversionchange:
+    | ((this: IDBDatabase, ev: IDBVersionChangeEvent) => any)
+    | null;
   /**
    * Returns the version of the database.
    */
@@ -124,7 +126,10 @@ export interface IDBDatabase extends EventTarget {
    *
    * Throws a "InvalidStateError" DOMException if not called within an upgrade transaction.
    */
-  createObjectStore(name: string, options?: IDBObjectStoreParameters): IDBObjectStore;
+  createObjectStore(
+    name: string,
+    options?: IDBObjectStoreParameters,
+  ): IDBObjectStore;
   /**
    * Deletes the object store with the given name.
    *
@@ -134,16 +139,35 @@ export interface IDBDatabase extends EventTarget {
   /**
    * Returns a new transaction with the given mode ("readonly" or "readwrite") and scope which can be a single object store name or an array of names.
    */
-  transaction(storeNames: string | string[], mode?: IDBTransactionMode): IDBTransaction;
-  addEventListener<K extends keyof IDBDatabaseEventMap>(type: K, listener: (this: IDBDatabase, ev: IDBDatabaseEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-  addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-  removeEventListener<K extends keyof IDBDatabaseEventMap>(type: K, listener: (this: IDBDatabase, ev: IDBDatabaseEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-  removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+  transaction(
+    storeNames: string | string[],
+    mode?: IDBTransactionMode,
+  ): IDBTransaction;
+  addEventListener<K extends keyof IDBDatabaseEventMap>(
+    type: K,
+    listener: (this: IDBDatabase, ev: IDBDatabaseEventMap[K]) => any,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  addEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  removeEventListener<K extends keyof IDBDatabaseEventMap>(
+    type: K,
+    listener: (this: IDBDatabase, ev: IDBDatabaseEventMap[K]) => any,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | EventListenerOptions,
+  ): void;
 }
 
 export interface IDBDatabase {
   prototype: IDBDatabase;
-  new(): IDBDatabase;
+  new (): IDBDatabase;
 }
 
 /** In the following code snippet, we make a request to open a database, and include handlers for the success and error cases. For a full working example, see our To-do Notifications app (view example live.) */
@@ -167,7 +191,7 @@ export interface IDBFactory {
 
 export interface IDBFactory {
   prototype: IDBFactory;
-  new(): IDBFactory;
+  new (): IDBFactory;
 }
 
 /** IDBIndex interface of the IndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data. */
@@ -200,13 +224,19 @@ export interface IDBIndex {
    *
    * If successful, request's result will be an Array of the values.
    */
-  getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+  getAll(
+    query?: IDBValidKey | IDBKeyRange | null,
+    count?: number,
+  ): IDBRequest<any[]>;
   /**
    * Retrieves the keys of records matching the given key or key range in query (up to count if given).
    *
    * If successful, request's result will be an Array of the keys.
    */
-  getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+  getAllKeys(
+    query?: IDBValidKey | IDBKeyRange | null,
+    count?: number,
+  ): IDBRequest<IDBValidKey[]>;
   /**
    * Retrieves the key of the first record matching the given key or key range in query.
    *
@@ -218,18 +248,24 @@ export interface IDBIndex {
    *
    * If successful, request's result will be an IDBCursorWithValue, or null if there were no matching records.
    */
-  openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+  openCursor(
+    query?: IDBValidKey | IDBKeyRange | null,
+    direction?: IDBCursorDirection,
+  ): IDBRequest<IDBCursorWithValue | null>;
   /**
    * Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in index are matched.
    *
    * If successful, request's result will be an IDBCursor, or null if there were no matching records.
    */
-  openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+  openKeyCursor(
+    query?: IDBValidKey | IDBKeyRange | null,
+    direction?: IDBCursorDirection,
+  ): IDBRequest<IDBCursor | null>;
 }
 
 export interface IDBIndex {
   prototype: IDBIndex;
-  new(): IDBIndex;
+  new (): IDBIndex;
 }
 
 /** A key range can be a single value or a range with upper and lower bounds or endpoints. If the key range has both upper and lower bounds, then it is bounded; if it has no bounds, it is unbounded. A bounded key range can either be open (the endpoints are excluded) or closed (the endpoints are included). To retrieve all keys within a certain range, you can use the following code constructs: */
@@ -258,11 +294,16 @@ export interface IDBKeyRange {
 
 export interface IDBKeyRange {
   prototype: IDBKeyRange;
-  new(): IDBKeyRange;
+  new (): IDBKeyRange;
   /**
    * Returns a new IDBKeyRange spanning from lower to upper. If lowerOpen is true, lower is not included in the range. If upperOpen is true, upper is not included in the range.
    */
-  bound(lower: any, upper: any, lowerOpen?: boolean, upperOpen?: boolean): IDBKeyRange;
+  bound(
+    lower: any,
+    upper: any,
+    lowerOpen?: boolean,
+    upperOpen?: boolean,
+  ): IDBKeyRange;
   /**
    * Returns a new IDBKeyRange starting at key with no upper bound. If open is true, key is not included in the range.
    */
@@ -326,7 +367,11 @@ export interface IDBObjectStore {
    *
    * Throws an "InvalidStateError" DOMException if not called within an upgrade transaction.
    */
-  createIndex(name: string, keyPath: string | string[], options?: IDBIndexParameters): IDBIndex;
+  createIndex(
+    name: string,
+    keyPath: string | string[],
+    options?: IDBIndexParameters,
+  ): IDBIndex;
   /**
    * Deletes records in store with the given key or in the given key range in query.
    *
@@ -350,13 +395,19 @@ export interface IDBObjectStore {
    *
    * If successful, request's result will be an Array of the values.
    */
-  getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+  getAll(
+    query?: IDBValidKey | IDBKeyRange | null,
+    count?: number,
+  ): IDBRequest<any[]>;
   /**
    * Retrieves the keys of records matching the given key or key range in query (up to count if given).
    *
    * If successful, request's result will be an Array of the keys.
    */
-  getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+  getAllKeys(
+    query?: IDBValidKey | IDBKeyRange | null,
+    count?: number,
+  ): IDBRequest<IDBValidKey[]>;
   /**
    * Retrieves the key of the first record matching the given key or key range in query.
    *
@@ -369,13 +420,19 @@ export interface IDBObjectStore {
    *
    * If successful, request's result will be an IDBCursorWithValue pointing at the first matching record, or null if there were no matching records.
    */
-  openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+  openCursor(
+    query?: IDBValidKey | IDBKeyRange | null,
+    direction?: IDBCursorDirection,
+  ): IDBRequest<IDBCursorWithValue | null>;
   /**
    * Opens a cursor with key only flag set over the records matching query, ordered by direction. If query is null, all records in store are matched.
    *
    * If successful, request's result will be an IDBCursor pointing at the first matching record, or null if there were no matching records.
    */
-  openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+  openKeyCursor(
+    query?: IDBValidKey | IDBKeyRange | null,
+    direction?: IDBCursorDirection,
+  ): IDBRequest<IDBCursor | null>;
   /**
    * Adds or updates a record in store with the given value and key.
    *
@@ -390,7 +447,7 @@ export interface IDBObjectStore {
 
 export interface IDBObjectStore {
   prototype: IDBObjectStore;
-  new(): IDBObjectStore;
+  new (): IDBObjectStore;
 }
 
 interface IDBOpenDBRequestEventMap extends IDBRequestEventMap {
@@ -401,16 +458,34 @@ interface IDBOpenDBRequestEventMap extends IDBRequestEventMap {
 /** Also inherits methods from its parents IDBRequest and EventTarget. */
 export interface IDBOpenDBRequest extends IDBRequest<IDBDatabase> {
   onblocked: ((this: IDBOpenDBRequest, ev: Event) => any) | null;
-  onupgradeneeded: ((this: IDBOpenDBRequest, ev: IDBVersionChangeEvent) => any) | null;
-  addEventListener<K extends keyof IDBOpenDBRequestEventMap>(type: K, listener: (this: IDBOpenDBRequest, ev: IDBOpenDBRequestEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-  addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-  removeEventListener<K extends keyof IDBOpenDBRequestEventMap>(type: K, listener: (this: IDBOpenDBRequest, ev: IDBOpenDBRequestEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-  removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+  onupgradeneeded:
+    | ((this: IDBOpenDBRequest, ev: IDBVersionChangeEvent) => any)
+    | null;
+  addEventListener<K extends keyof IDBOpenDBRequestEventMap>(
+    type: K,
+    listener: (this: IDBOpenDBRequest, ev: IDBOpenDBRequestEventMap[K]) => any,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  addEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  removeEventListener<K extends keyof IDBOpenDBRequestEventMap>(
+    type: K,
+    listener: (this: IDBOpenDBRequest, ev: IDBOpenDBRequestEventMap[K]) => any,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | EventListenerOptions,
+  ): void;
 }
 
 export interface IDBOpenDBRequest {
   prototype: IDBOpenDBRequest;
-  new(): IDBOpenDBRequest;
+  new (): IDBOpenDBRequest;
 }
 
 interface IDBRequestEventMap {
@@ -442,15 +517,31 @@ export interface IDBRequest<T = any> extends EventTarget {
    * Returns the IDBTransaction the request was made within. If this as an open request, then it returns an upgrade transaction while it is running, or null otherwise.
    */
   readonly transaction: IDBTransaction | null;
-  addEventListener<K extends keyof IDBRequestEventMap>(type: K, listener: (this: IDBRequest<T>, ev: IDBRequestEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-  addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-  removeEventListener<K extends keyof IDBRequestEventMap>(type: K, listener: (this: IDBRequest<T>, ev: IDBRequestEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-  removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+  addEventListener<K extends keyof IDBRequestEventMap>(
+    type: K,
+    listener: (this: IDBRequest<T>, ev: IDBRequestEventMap[K]) => any,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  addEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  removeEventListener<K extends keyof IDBRequestEventMap>(
+    type: K,
+    listener: (this: IDBRequest<T>, ev: IDBRequestEventMap[K]) => any,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | EventListenerOptions,
+  ): void;
 }
 
 export interface IDBRequest {
-    prototype: IDBRequest;
-    new(): IDBRequest;
+  prototype: IDBRequest;
+  new (): IDBRequest;
 }
 
 interface IDBTransactionEventMap {
@@ -488,15 +579,31 @@ export interface IDBTransaction extends EventTarget {
    * Returns an IDBObjectStore in the transaction's scope.
    */
   objectStore(name: string): IDBObjectStore;
-  addEventListener<K extends keyof IDBTransactionEventMap>(type: K, listener: (this: IDBTransaction, ev: IDBTransactionEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-  addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-  removeEventListener<K extends keyof IDBTransactionEventMap>(type: K, listener: (this: IDBTransaction, ev: IDBTransactionEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-  removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+  addEventListener<K extends keyof IDBTransactionEventMap>(
+    type: K,
+    listener: (this: IDBTransaction, ev: IDBTransactionEventMap[K]) => any,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  addEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  removeEventListener<K extends keyof IDBTransactionEventMap>(
+    type: K,
+    listener: (this: IDBTransaction, ev: IDBTransactionEventMap[K]) => any,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: string,
+    listener: EventListenerOrEventListenerObject,
+    options?: boolean | EventListenerOptions,
+  ): void;
 }
 
 export interface IDBTransaction {
-    prototype: IDBTransaction;
-    new(): IDBTransaction;
+  prototype: IDBTransaction;
+  new (): IDBTransaction;
 }
 
 /** This IndexedDB API interface indicates that the version of the database has changed, as the result of an IDBOpenDBRequest.onupgradeneeded event handler function. */
@@ -507,5 +614,8 @@ export interface IDBVersionChangeEvent extends Event {
 
 export interface IDBVersionChangeEvent {
   prototype: IDBVersionChangeEvent;
-  new(type: string, eventInitDict?: IDBVersionChangeEventInit): IDBVersionChangeEvent;
+  new (
+    type: string,
+    eventInitDict?: IDBVersionChangeEventInit,
+  ): IDBVersionChangeEvent;
 }
