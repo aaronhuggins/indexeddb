@@ -9,9 +9,10 @@ Deno.test('createIndexedDB', async ({ step }) => {
   let open: IDBOpenDBRequest
 
   await step('should return IDBFactory', () => {
-    idb = createIndexedDB()
+    const { indexedDB } = createIndexedDB()
+    idb = indexedDB
 
-    assertEquals(typeof idb.open, 'function')
+    assertEquals(typeof indexedDB.open, 'function')
   })
 
   await step('should add indexedDB to the global scope', () => {
