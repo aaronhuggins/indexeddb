@@ -1,4 +1,5 @@
 import { configureSQLiteDB, createIndexedDB } from './lib/shim.ts'
+export * from './lib/indexeddb.ts'
 
 configureSQLiteDB({ memory: false })
 
