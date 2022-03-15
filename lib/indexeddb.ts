@@ -26,7 +26,7 @@ interface IDBVersionChangeEventInit extends EventInit {
 }
 
 /** This IndexedDB API interface represents a cursor for traversing or iterating over multiple records in a database. */
-interface IDBCursor {
+export interface IDBCursor {
   /**
    * Returns the direction ("next", "nextunique", "prev" or "prevunique") of the cursor.
    */
@@ -72,20 +72,20 @@ interface IDBCursor {
   update(value: any): IDBRequest<IDBValidKey>;
 }
 
-interface IDBCursor {
+export interface IDBCursor {
   prototype: IDBCursor;
   new(): IDBCursor;
 }
 
 /** This IndexedDB API interface represents a cursor for traversing or iterating over multiple records in a database. It is the same as the IDBCursor, except that it includes the value property. */
-interface IDBCursorWithValue extends IDBCursor {
+export interface IDBCursorWithValue extends IDBCursor {
   /**
    * Returns the cursor's current value.
    */
   readonly value: any;
 }
 
-interface IDBCursorWithValue {
+export interface IDBCursorWithValue {
   prototype: IDBCursorWithValue;
   new(): IDBCursorWithValue;
 }
@@ -98,7 +98,7 @@ interface IDBDatabaseEventMap {
 }
 
 /** This IndexedDB API interface provides a connection to a database; you can use an IDBDatabase object to open a transaction on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database. */
-interface IDBDatabase extends EventTarget {
+export interface IDBDatabase extends EventTarget {
   /**
    * Returns the name of the database.
    */
@@ -141,7 +141,7 @@ interface IDBDatabase extends EventTarget {
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
-interface IDBDatabase {
+export interface IDBDatabase {
   prototype: IDBDatabase;
   new(): IDBDatabase;
 }
@@ -171,7 +171,7 @@ export interface IDBFactory {
 }
 
 /** IDBIndex interface of the IndexedDB API provides asynchronous access to an index in a database. An index is a kind of object store for looking up records in another object store, called the referenced object store. You use this interface to retrieve data. */
-interface IDBIndex {
+export interface IDBIndex {
   readonly keyPath: string | string[];
   readonly multiEntry: boolean;
   /**
@@ -227,13 +227,13 @@ interface IDBIndex {
   openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
 }
 
-interface IDBIndex {
+export interface IDBIndex {
   prototype: IDBIndex;
   new(): IDBIndex;
 }
 
 /** A key range can be a single value or a range with upper and lower bounds or endpoints. If the key range has both upper and lower bounds, then it is bounded; if it has no bounds, it is unbounded. A bounded key range can either be open (the endpoints are excluded) or closed (the endpoints are included). To retrieve all keys within a certain range, you can use the following code constructs: */
-interface IDBKeyRange {
+export interface IDBKeyRange {
   /**
    * Returns lower bound, or undefined if none.
    */
@@ -256,7 +256,7 @@ interface IDBKeyRange {
   includes(key: any): boolean;
 }
 
-interface IDBKeyRange {
+export interface IDBKeyRange {
   prototype: IDBKeyRange;
   new(): IDBKeyRange;
   /**
@@ -278,7 +278,7 @@ interface IDBKeyRange {
 }
 
 /** This example shows a variety of different uses of object stores, from updating the data structure with IDBObjectStore.createIndex inside an onupgradeneeded function, to adding a new item to our object store with IDBObjectStore.add. For a full working example, see our To-do Notifications app (view example live.) */
-interface IDBObjectStore {
+export interface IDBObjectStore {
   /**
    * Returns true if the store has a key generator, and false otherwise.
    */
@@ -388,7 +388,7 @@ interface IDBObjectStore {
   put(value: any, key?: IDBValidKey): IDBRequest<IDBValidKey>;
 }
 
-interface IDBObjectStore {
+export interface IDBObjectStore {
   prototype: IDBObjectStore;
   new(): IDBObjectStore;
 }
@@ -419,7 +419,7 @@ interface IDBRequestEventMap {
 }
 
 /** The request object does not initially contain any information about the result of the operation, but once information becomes available, an event is fired on the request, and the information becomes available through the properties of the IDBRequest instance. */
-interface IDBRequest<T = any> extends EventTarget {
+export interface IDBRequest<T = any> extends EventTarget {
   /**
    * When a request is completed, returns the error (a DOMException), or null if the request succeeded. Throws a "InvalidStateError" DOMException if the request is still pending.
    */
@@ -448,7 +448,7 @@ interface IDBRequest<T = any> extends EventTarget {
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
-interface IDBRequest {
+export interface IDBRequest {
     prototype: IDBRequest;
     new(): IDBRequest;
 }
@@ -459,7 +459,7 @@ interface IDBTransactionEventMap {
   "error": Event;
 }
 
-interface IDBTransaction extends EventTarget {
+export interface IDBTransaction extends EventTarget {
   /**
    * Returns the transaction's connection.
    */
@@ -494,18 +494,18 @@ interface IDBTransaction extends EventTarget {
   removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
 }
 
-interface IDBTransaction {
+export interface IDBTransaction {
     prototype: IDBTransaction;
     new(): IDBTransaction;
 }
 
 /** This IndexedDB API interface indicates that the version of the database has changed, as the result of an IDBOpenDBRequest.onupgradeneeded event handler function. */
-interface IDBVersionChangeEvent extends Event {
+export interface IDBVersionChangeEvent extends Event {
   readonly newVersion: number | null;
   readonly oldVersion: number;
 }
 
-interface IDBVersionChangeEvent {
+export interface IDBVersionChangeEvent {
   prototype: IDBVersionChangeEvent;
   new(type: string, eventInitDict?: IDBVersionChangeEventInit): IDBVersionChangeEvent;
 }
