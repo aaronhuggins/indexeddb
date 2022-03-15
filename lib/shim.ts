@@ -38,20 +38,6 @@ interface IDBShim extends IndexedDBApi {
 }
 
 const setGlobalVars = indexeddbshim as (...args: any[]) => IDBShim
-const indexedDBApi: Array<keyof IndexedDBApi> = [
-  "IDBCursor",
-  "IDBCursorWithValue",
-  "IDBDatabase",
-  "IDBFactory",
-  "IDBIndex",
-  "IDBKeyRange",
-  "IDBObjectStore",
-  "IDBOpenDBRequest",
-  "IDBRequest",
-  "IDBTransaction",
-  "IDBVersionChangeEvent",
-  "indexedDB"
-]
 
 function createIndexedDB (makeGlobal = false): IndexedDBApi {
   const kludge = makeGlobal ? null : { shimIndexedDB: {} }
@@ -63,13 +49,20 @@ function createIndexedDB (makeGlobal = false): IndexedDBApi {
 
   if (!makeGlobal) idb.shimIndexedDB.__useShim()
 
-  const api: IndexedDBApi = {} as any
-
-  for (const apiName of indexedDBApi) {
-    api[apiName] = idb[apiName] as any
+  return {
+    IDBCursor: idb.IDBCursor,
+    IDBCursorWithValue: idb.IDBCursorWithValue,
+    IDBDatabase: idb.IDBDatabase,
+    IDBFactory: idb.IDBFactory,
+    IDBIndex: idb.IDBIndex,
+    IDBKeyRange: idb.IDBKeyRange,
+    IDBObjectStore: idb.IDBObjectStore,
+    IDBOpenDBRequest: idb.IDBOpenDBRequest,
+    IDBRequest: idb.IDBRequest,
+    IDBTransaction: idb.IDBTransaction,
+    IDBVersionChangeEvent: idb.IDBVersionChangeEvent,
+    indexedDB: idb.indexedDB
   }
-
-  return api
 }
 
 export {
