@@ -16,4 +16,4 @@ export const IDBOpenDBRequest = api.IDBOpenDBRequest;
 export const IDBRequest = api.IDBRequest;
 export const IDBTransaction = api.IDBTransaction;
 export const IDBVersionChangeEvent = api.IDBVersionChangeEvent;
-export const indexedDB = api.indexedDB;
+export const indexedDB: typeof IDBFactory = api.indexedDB;
