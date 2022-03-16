@@ -65,6 +65,4 @@ Deno.test("createIndexedDB", async ({ step }) => {
       };
     });
   });
-
-  await step("should create a schema", async () => {});
 });
