@@ -17,13 +17,13 @@ expect it to be available globally.
 **Persistent**
 
 ```javascript
-import { indexedDB } from "https://deno.land/x/indexeddb@v1.0.0/ponyfill.ts";
+import { indexedDB } from "https://deno.land/x/indexeddb@v1.1.0/ponyfill.ts";
 ```
 
 **In-memory**
 
 ```javascript
-import { indexedDB } from "https://deno.land/x/indexeddb@v1.0.0/ponyfill_memory.ts";
+import { indexedDB } from "https://deno.land/x/indexeddb@v1.1.0/ponyfill_memory.ts";
 ```
 
 ### Polyfill
@@ -34,13 +34,13 @@ interface `IDBFactory` in the global type scope.
 **Persistent**
 
 ```javascript
-import "https://deno.land/x/indexeddb@v1.0.0/polyfill.ts";
+import "https://deno.land/x/indexeddb@v1.1.0/polyfill.ts";
 ```
 
 **In-memory**
 
 ```javascript
-import "https://deno.land/x/indexeddb@v1.0.0/polyfill_memory.ts";
+import "https://deno.land/x/indexeddb@v1.1.0/polyfill_memory.ts";
 ```
 
 ## Documentation
@@ -48,6 +48,10 @@ import "https://deno.land/x/indexeddb@v1.0.0/polyfill_memory.ts";
 Please
 [see Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/indexedDB)
 for complete documentation; keep in mind that sync operations are not supported.
+
+This library is documented using types copied from TypeScript's `lib.dom.ts` to
+allow intellisense. Internal docs can be found at
+[doc.deno.land](https://doc.deno.land/https://deno.land/x/indexeddb@v1.1.0/ponyfill.ts).
 
 ## How it works
 
