@@ -20,7 +20,7 @@ Deno.test("createIndexedDB", async ({ step }) => {
   });
 
   await step("should add indexedDB to the global scope", () => {
-    createIndexedDB(true);
+    createIndexedDB(true, false, "./temp");
     open = (globalThis as any).indexedDB;
 
     assertEquals(typeof (globalThis as any).indexedDB, "object");
@@ -67,6 +67,14 @@ Deno.test("createIndexedDB", async ({ step }) => {
       };
     });
   });
+
+  if (!useMemory) {
+    await step("should stat database on disk", () => {
+      Deno.statSync("./temp/__sysdb__.sqlite");
+      Deno.statSync("./temp/MyDatabase.sqlite");
+      Deno.removeSync("./temp", { recursive: true });
+    });
+  }
 });
 
 /** Hack for closing leaky async resources that are ignored by the IndexedDB implementation expecting to be long-lived. */
