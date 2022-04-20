@@ -3,8 +3,12 @@ import { assertEquals } from "https://deno.land/std@0.125.0/testing/asserts.ts";
 import { configureSQLiteDB, createIndexedDB } from "./shim.ts";
 import type { IDBFactory, IDBOpenDBRequest } from "./indexeddb.ts";
 
+const write = await Deno.permissions.query({ name: "write" })
+const read = await Deno.permissions.query({ name: "read" })
+const useMemory = write.state !== "granted" && read.state !== "granted"
+
 Deno.test("createIndexedDB", async ({ step }) => {
-  configureSQLiteDB({ memory: true });
+  configureSQLiteDB({ memory: useMemory });
   let idb: IDBFactory;
   let open: IDBOpenDBRequest;
 
@@ -24,7 +28,7 @@ Deno.test("createIndexedDB", async ({ step }) => {
   });
 
   await step("should create a schema", async () => {
-    await new Promise<void>((resolve, reject) => {
+    return await new Promise<void>((resolve, reject) => {
       open = idb.open("MyDatabase", 1);
       open.onerror = (error) => reject((error as any).debug);
       open.onupgradeneeded = () => {
@@ -34,13 +38,10 @@ Deno.test("createIndexedDB", async ({ step }) => {
             keyPath: "id",
           });
           store.createIndex("NameIndex", ["name.last", "name.first"]);
-          resolve();
         } catch (error) {
           reject(error);
         }
       };
-    });
-    await new Promise<void>((resolve, reject) => {
       open.onsuccess = () => {
         // Start a new transaction
         const db = open.result;
@@ -60,9 +61,22 @@ Deno.test("createIndexedDB", async ({ step }) => {
 
         tx.oncomplete = () => {
           db.close();
-          resolve();
+          dispatchEvent(new Event("unload"))
+          clearAllTimeouts().then(() => resolve())
         };
       };
     });
   });
 });
+
+/** Hack for closing leaky async resources that are ignored by the IndexedDB implementation expecting to be long-lived. */
+async function clearAllTimeouts () {
+  return await new Promise<void>(resolve => {
+    let id = setTimeout(() => {
+      while (id--) {
+        clearTimeout(id)
+      }
+      resolve()
+    })
+  })
+}
