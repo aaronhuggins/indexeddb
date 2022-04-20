@@ -42,12 +42,21 @@ interface IDBShim extends IndexedDBApi {
 
 const setGlobalVars = indexeddbshim as (...args: any[]) => IDBShim;
 
-function createIndexedDB(makeGlobal = false): IndexedDBApi {
+function createIndexedDB(
+  makeGlobal = false,
+  escapeName = true,
+  systemPath?: string,
+): IndexedDBApi {
   const kludge = makeGlobal ? null : { shimIndexedDB: {} };
   const idb = setGlobalVars(kludge, {
     avoidAutoShim: !makeGlobal,
     checkOrigin: false,
     win: { openDatabase },
+    escapeDatabaseName: escapeName ? undefined : (name: string) => {
+      if (name.toLowerCase().endsWith(".sqlite")) return name;
+      return name + ".sqlite";
+    },
+    sysDatabaseBasePath: systemPath,
   });
 
   if (!makeGlobal) idb.shimIndexedDB.__useShim();
