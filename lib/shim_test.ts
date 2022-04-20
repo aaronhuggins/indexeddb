@@ -61,7 +61,7 @@ Deno.test("createIndexedDB", async ({ step }) => {
 
         tx.oncomplete = () => {
           db.close();
-          dispatchEvent(new Event("unload"));
+          dispatchEvent(new Event("destroy_sqlite"));
           clearAllTimeouts().then(() => resolve());
         };
       };
