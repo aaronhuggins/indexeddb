@@ -12,12 +12,12 @@ import type {
   IDBTransaction,
   IDBVersionChangeEvent,
 } from "./indexeddb.ts";
-import "https://cdn.skypack.dev/regenerator-runtime@0.13.9";
-import indexeddbshim from "https://cdn.skypack.dev/indexeddbshim@v9.0.0/dist/indexeddbshim-noninvasive.js";
+import "https://cdn.skypack.dev/pin/regenerator-runtime@v0.13.9-4Dxus9nU31cBsHxnWq2H/mode=imports/optimized/regenerator-runtime.js";
+import indexeddbshim from "https://cdn.skypack.dev/pin/indexeddbshim@v9.0.0-QVaW8rBIOGlJegwkWTsK/mode=imports/unoptimized/dist/indexeddbshim-noninvasive.js";
 import {
   configureSQLiteDB,
   openDatabase,
-} from "https://deno.land/x/websql@v1.2.0/mod.ts";
+} from "https://deno.land/x/websql@1.3.0/mod.ts";
 
 export interface IndexedDBApi {
   IDBCursor: IDBCursor;
