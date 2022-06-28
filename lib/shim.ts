@@ -40,6 +40,10 @@ interface IDBShim extends IndexedDBApi {
   };
 }
 
+if (Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined) {
+  Deno.mkdirSync = (_path: string | URL, _options?: Deno.MkdirOptions | undefined) => {}
+}
+
 const setGlobalVars = indexeddbshim as (...args: any[]) => IDBShim;
 
 function createIndexedDB(
