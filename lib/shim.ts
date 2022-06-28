@@ -17,7 +17,7 @@ import indexeddbshim from "https://cdn.skypack.dev/pin/indexeddbshim@v9.0.0-QVaW
 import {
   configureSQLiteDB,
   openDatabase,
-} from "https://deno.land/x/websql@1.3.1/mod.ts";
+} from "https://deno.land/x/websql@1.3.2/mod.ts";
 
 export interface IndexedDBApi {
   IDBCursor: IDBCursor;
