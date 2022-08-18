@@ -26,6 +26,19 @@ declare global {
   interface IDBTransaction extends IDBTransaction1 {}
   interface IDBVersionChangeEvent extends IDBVersionChangeEvent1 {}
 
+  let indexedDB: IDBFactory;
+  let IDBCursor: IDBCursor;
+  let IDBCursorWithValue: IDBCursorWithValue;
+  let IDBDatabase: IDBDatabase;
+  let IDBFactory: IDBFactory;
+  let IDBIndex: IDBIndex;
+  let IDBKeyRange: IDBKeyRange;
+  let IDBObjectStore: IDBObjectStore;
+  let IDBOpenDBRequest: IDBOpenDBRequest;
+  let IDBRequest: IDBRequest;
+  let IDBTransaction: IDBTransaction;
+  let IDBVersionChangeEvent: IDBVersionChangeEvent;
+
   interface WindowOrWorkerGlobalScope {
     IDBCursor: IDBCursor;
     IDBCursorWithValue: IDBCursorWithValue;
@@ -41,5 +54,18 @@ declare global {
     indexedDB: IDBFactory;
   }
 
-  let indexedDB: IDBFactory;
+  interface Window {
+    IDBCursor: IDBCursor;
+    IDBCursorWithValue: IDBCursorWithValue;
+    IDBDatabase: IDBDatabase;
+    IDBFactory: IDBFactory;
+    IDBIndex: IDBIndex;
+    IDBKeyRange: IDBKeyRange;
+    IDBObjectStore: IDBObjectStore;
+    IDBOpenDBRequest: IDBOpenDBRequest;
+    IDBRequest: IDBRequest;
+    IDBTransaction: IDBTransaction;
+    IDBVersionChangeEvent: IDBVersionChangeEvent;
+    indexedDB: IDBFactory;
+  }
 }
